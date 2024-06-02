@@ -44,7 +44,6 @@ $(document).ready(function() {
     for (let i = 1; i <= maxDay; i++) {
         var ii = i + startDay - 1;
         divDay = $('<div>').text(i);
-        if (ii % 7 === 1) { divDay.addClass('clear'); }
         if (i === day) {
             divDay.addClass('today');
         } else {
