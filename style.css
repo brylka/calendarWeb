@@ -13,6 +13,16 @@
     background-color: darkgrey;
 }
 
+#calendar .sunday {
+    color: white;
+    background-color: blue;
+}
+
+#calendar .saturday {
+    color: white;
+    background-color: lightblue;
+}
+
 .clear {
     clear: both;
 }
