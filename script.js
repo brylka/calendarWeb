@@ -1,10 +1,14 @@
 $(document).ready(function() {
+    // Tablica z nazwami dni tygodnia
+    var dayName = ["Pon", "Wto", "Śro", "Czw", "Pią", "Sob", "Nie"];
+
+    // Wyświetlenie nazw dni tygodnia
+    for (let i = 0; i <= 6; i++) {
+        $("#calendar").append('<div class="day-name">' + dayName[i] + '</div>');
+    }
+
+    // Wyświetlenie dni miesiąca
     for (let i = 1; i <= 31; i++) {
-        //if (i % 7 == 1) { // Każdy pierwszy dzień tygodnia zaczyna nowy rząd
-        //    $("#calendar").append('<div class="clear">' + i + '</div>');
-        //} else {
-        //    $("#calendar").append("<div>" + i + "</div>");
-        //}
         $("#calendar").append('<div class="' + ((i % 7 == 1) ? 'clear' : '') + '">' + i + '</div>');
     }
 });

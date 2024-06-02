@@ -8,6 +8,11 @@
     float: left;
 }
 
+#calendar .day-name {
+    color: white;
+    background-color: darkgrey;
+}
+
 .clear {
     clear: both;
 }
