@@ -23,6 +23,10 @@
     background-color: lightblue;
 }
 
+#calendar .none {
+    background-color: white;
+}
+
 .clear {
     clear: both;
 }
