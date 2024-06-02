@@ -47,7 +47,7 @@ $(document).ready(function() {
         for (let i = 1; i <= maxDay; i++) {
             var ii = i + startDay - 1;
             divDay = $('<div>').text(i);
-            if (i === day) {
+            if (i === day && month === (new Date()).getMonth() + 1 && year === (new Date()).getFullYear()) {
                 divDay.addClass('today');
             } else {
                 if (ii % 7 === 0) { divDay.addClass('sunday'); }
