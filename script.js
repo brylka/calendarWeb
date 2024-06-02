@@ -29,7 +29,6 @@ $(document).ready(function() {
     // Wyświetlenie nazw dni tygodnia z odpowiednią klasą dla weekendu
     for (let i = 0; i <= 6; i++) {
         divDay = $('<div>').text(dayName[i]).addClass('day-name');
-        if (i === 0) { divDay.addClass('clear'); }
         if (i === 5) { divDay.addClass('saturday'); }
         if (i === 6) { divDay.addClass('sunday'); }
         fragment.append(divDay);
@@ -38,7 +37,6 @@ $(document).ready(function() {
     // Wyświetlenie pustych dni na początku miesiąca
     for (let i = 1; i < startDay; i++) {
         divDay = $('<div>').addClass('none');
-        if (i === 1) { divDay.addClass('clear'); }
         fragment.append(divDay);
     }
 

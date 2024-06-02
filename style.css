@@ -1,11 +1,16 @@
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    max-width: 400px;
+}
+
 #calendar div {
-    width: 50px;
+    width: 100%;
     height: 50px;
-    margin: 5px;
     text-align: center;
     line-height: 50px;
     background-color: lightgrey;
-    float: left;
 }
 
 #calendar .day-name {
@@ -28,14 +33,11 @@
 }
 
 #calendar .month-year {
-    width: 290px;
+    grid-column: span 5;
+    text-align: center;
 }
 
 #calendar .today {
     color: white;
     background-color: red;
-}
-
-.clear {
-    clear: both;
 }
