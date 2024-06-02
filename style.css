@@ -41,3 +41,8 @@
     color: white;
     background-color: red;
 }
+
+#calendar .nav {
+    cursor: pointer;
+    user-select: none;
+}
