@@ -10,12 +10,24 @@ $(document).ready(function() {
     // Pobranie maksymalnego dnia w miesiącu
     var maxDay = new Date(year, month, 0).getDate();
 
+    // Tablica z nazwami miesięcy
+    var monthName = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+
+    // Wyświetlanie nazwy miesiąca i roku oraz elementów nawigacyjnych
+    var divDay = $('<div>').text("<");
+    $("#calendar").append(divDay);
+    divDay = $('<div>').text(monthName[month-1] + " " + year).addClass('month-year');
+    $("#calendar").append(divDay);
+    divDay = $('<div>').text(">");
+    $("#calendar").append(divDay);
+
     // Tablica z nazwami dni tygodnia
     var dayName = ["Pon", "Wto", "Śro", "Czw", "Pią", "Sob", "Nie"];
 
     // Wyświetlenie nazw dni tygodnia z odpowiednią klasą dla weekendu
     for (let i = 0; i <= 6; i++) {
         var divDay = $('<div>').text(dayName[i]).addClass('day-name');
+        if (i == 0) { divDay.addClass('clear'); }
         if (i == 5) { divDay.addClass('saturday'); }
         if (i == 6) { divDay.addClass('sunday'); }
         $("#calendar").append(divDay);
