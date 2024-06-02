@@ -1,7 +1,9 @@
 $(document).ready(function() {
     // Dane startowe
-    var month = 9; // Wrzesień
-    var year = 2024;
+    var date = new Date();
+    var month = date.getMonth() + 1; // Pobranie aktualnego roku w formacie czterocyfrowym
+    var year = date.getFullYear(); // Pobranie aktualnego miesiąca i korekta indeksu (getMonth zwraca miesiące od 0 do 11)
+    var day = date.getDate(); // Pobranie aktualnego dnia miesiąca
 
     // Obliczenie pierwszego dnia miesiąca
     var startDay = new Date(year, month - 1, 1).getDay(); // .getDay() zwraca indeksy dni tygodnia 0-6, gdzie 0 to niedziela
@@ -45,8 +47,11 @@ $(document).ready(function() {
         var ii = i + startDay - 1;
         var divDay = $('<div>').text(i);
         if (ii % 7 == 1) { divDay.addClass('clear'); }
-        if (ii % 7 == 0) { divDay.addClass('sunday'); }
-        if (ii % 7 == 6) { divDay.addClass('saturday'); }
+        if (i == day) { divDay.addClass('today');
+        } else {
+            if (ii % 7 == 0) { divDay.addClass('sunday'); }
+            if (ii % 7 == 6) { divDay.addClass('saturday'); }
+        }
         $("#calendar").append(divDay);
     }
 });
