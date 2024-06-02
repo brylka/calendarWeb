@@ -1,7 +1,14 @@
 $(document).ready(function() {
     // Dane startowe
-    var startDay = 7; // Numer dnia tygodnia 1-7, gdzie 1 - poniedziałek, 7 - niedziela
-    var maxDay = 30; // Ilość dni w miesiącu
+    var month = 9; // Wrzesień
+    var year = 2024;
+
+    // Obliczenie pierwszego dnia miesiąca
+    var startDay = new Date(year, month - 1, 1).getDay(); // .getDay() zwraca indeksy dni tygodnia 0-6, gdzie 0 to niedziela
+    if (startDay == 0) { startDay = 7; } // Zamiana numeru dla niedzieli na format 1-7
+
+    // Pobranie maksymalnego dnia w miesiącu
+    var maxDay = new Date(year, month, 0).getDate();
 
     // Tablica z nazwami dni tygodnia
     var dayName = ["Pon", "Wto", "Śro", "Czw", "Pią", "Sob", "Nie"];
