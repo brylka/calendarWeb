@@ -7,3 +7,7 @@
     background-color: lightgrey;
     float: left;
 }
+
+.clear {
+    clear: both;
+}
