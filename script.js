@@ -3,6 +3,7 @@ $(document).ready(function() {
     var date = new Date();
     var month = date.getMonth() + 1; // Pobranie aktualnego miesiąca i korekta indeksu (getMonth zwraca miesiące od 0 do 11)
     var year = date.getFullYear(); // Pobranie aktualnego roku w formacie czterocyfrowym
+    var lang = 'pl'; // Domyślny język
     generateCalendar(month, year);
 
     function generateCalendar(month, year) {
@@ -20,6 +21,13 @@ $(document).ready(function() {
 
         // Tworzenie fragmentu dokumentu
         var fragment = $(document.createDocumentFragment());
+
+        // Wyświetlenie panelu do zmiany języka
+        fragment.append($('<div>').attr('id', 'language-panel')
+            .append($('<select>').attr('id', 'change-lang')
+                .append($('<option>').val('pl').text('Polski'))
+                .append($('<option>').val('en').text('English'))
+            .val(lang)));
 
         // Wyświetlanie nazwy miesiąca i roku oraz elementów nawigacyjnych
         fragment.append($('<div>').text("<").addClass('nav prev'));

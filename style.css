@@ -46,3 +46,20 @@
     cursor: pointer;
     user-select: none;
 }
+
+#language-panel {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column: span 7;
+    background-color: darkgrey;
+}
+
+#change-lang {
+    height: 25px;
+    padding: 5px;
+    font-size: 12px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    margin-right: 10px;
+}
