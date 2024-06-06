@@ -4,7 +4,33 @@ $(document).ready(function() {
     var month = date.getMonth() + 1; // Pobranie aktualnego miesiąca i korekta indeksu (getMonth zwraca miesiące od 0 do 11)
     var year = date.getFullYear(); // Pobranie aktualnego roku w formacie czterocyfrowym
     var lang = 'pl'; // Domyślny język
-    generateCalendar(month, year);
+    var translations = {};
+
+    changeTranslations(lang);
+
+    // Funkcja do zmiany tłumaczeń
+    function changeTranslations(lang) {
+        if (lang === 'pl') {
+            translations = {
+                'month_january': 'Styczeń', 'month_february': 'Luty', 'month_march': 'Marzec',
+                'month_april': 'Kwiecień', 'month_may': 'Maj', 'month_june': 'Czerwiec',
+                'month_july': 'Lipiec', 'month_august': 'Sierpień', 'month_september': 'Wrzesień',
+                'month_october': 'Październik', 'month_november': 'Listopad', 'month_december': 'Grudzień',
+                'day_monday': 'Pon', 'day_tuesday': 'Wto', 'day_wednesday': 'Śro',
+                'day_thursday': 'Czw', 'day_friday': 'Pią', 'day_saturday': 'Sob', 'day_sunday': 'Nie'
+            };
+        } else if (lang === 'en') {
+            translations = {
+                'month_january': 'January', 'month_february': 'February', 'month_march': 'March',
+                'month_april': 'April', 'month_may': 'May', 'month_june': 'June',
+                'month_july': 'July', 'month_august': 'August', 'month_september': 'September',
+                'month_october': 'October', 'month_november': 'November', 'month_december': 'December',
+                'day_monday': 'Mon', 'day_tuesday': 'Tue', 'day_wednesday': 'Wed',
+                'day_thursday': 'Thu', 'day_friday': 'Fri', 'day_saturday': 'Sat', 'day_sunday': 'Sun'
+            };
+        }
+        generateCalendar(month, year);
+    }
 
     function generateCalendar(month, year) {
         var day = date.getDate(); // Pobranie aktualnego dnia miesiąca
@@ -17,7 +43,12 @@ $(document).ready(function() {
         var maxDay = new Date(year, month, 0).getDate();
 
         // Tablica z nazwami miesięcy
-        var monthName = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+        var monthName = [
+            translations['month_january'], translations['month_february'], translations['month_march'],
+            translations['month_april'], translations['month_may'], translations['month_june'],
+            translations['month_july'], translations['month_august'], translations['month_september'],
+            translations['month_october'], translations['month_november'], translations['month_december']
+        ];
 
         // Tworzenie fragmentu dokumentu
         var fragment = $(document.createDocumentFragment());
@@ -35,7 +66,11 @@ $(document).ready(function() {
         fragment.append($('<div>').text(">").addClass('nav next'));
 
         // Tablica z nazwami dni tygodnia
-        var dayName = ["Pon", "Wto", "Śro", "Czw", "Pią", "Sob", "Nie"];
+        var dayName = [
+            translations['day_monday'], translations['day_tuesday'], translations['day_wednesday'],
+            translations['day_thursday'], translations['day_friday'], translations['day_saturday'],
+            translations['day_sunday']
+        ];
 
         // Wyświetlenie nazw dni tygodnia z odpowiednią klasą dla weekendu
         for (let i = 0; i <= 6; i++) {
@@ -84,5 +119,11 @@ $(document).ready(function() {
             }
         }
         generateCalendar(month, year);
+    });
+
+    // Onchange do zmiany tłumaczenia
+    $(document).on('change', '#change-lang', function() {
+        lang = $(this).val();
+        changeTranslations(lang);
     });
 });
