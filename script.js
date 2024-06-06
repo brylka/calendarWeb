@@ -8,28 +8,21 @@ $(document).ready(function() {
 
     changeTranslations(lang);
 
-    // Funkcja do zmiany tłumaczeń
+    // Funkcja do pobierania tłumaczeń z api i ich zmiany
     function changeTranslations(lang) {
-        if (lang === 'pl') {
-            translations = {
-                'month_january': 'Styczeń', 'month_february': 'Luty', 'month_march': 'Marzec',
-                'month_april': 'Kwiecień', 'month_may': 'Maj', 'month_june': 'Czerwiec',
-                'month_july': 'Lipiec', 'month_august': 'Sierpień', 'month_september': 'Wrzesień',
-                'month_october': 'Październik', 'month_november': 'Listopad', 'month_december': 'Grudzień',
-                'day_monday': 'Pon', 'day_tuesday': 'Wto', 'day_wednesday': 'Śro',
-                'day_thursday': 'Czw', 'day_friday': 'Pią', 'day_saturday': 'Sob', 'day_sunday': 'Nie'
-            };
-        } else if (lang === 'en') {
-            translations = {
-                'month_january': 'January', 'month_february': 'February', 'month_march': 'March',
-                'month_april': 'April', 'month_may': 'May', 'month_june': 'June',
-                'month_july': 'July', 'month_august': 'August', 'month_september': 'September',
-                'month_october': 'October', 'month_november': 'November', 'month_december': 'December',
-                'day_monday': 'Mon', 'day_tuesday': 'Tue', 'day_wednesday': 'Wed',
-                'day_thursday': 'Thu', 'day_friday': 'Fri', 'day_saturday': 'Sat', 'day_sunday': 'Sun'
-            };
-        }
-        generateCalendar(month, year);
+        $.ajax({
+            url: 'http://localhost/lang.php',
+            data: { lang: lang },
+            dataType: 'json',
+            success: function(data) {
+                translations = data;
+                generateCalendar(month, year);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                alert('Nie udało się załadować tłumaczeń. Spróbuj ponownie później.');
+            }
+        });
     }
 
     function generateCalendar(month, year) {
